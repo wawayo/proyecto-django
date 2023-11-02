@@ -1,11 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <title>Estante</title>
 </head>
 <body>
-  <h1>hola</h1>
+  
+  <div class="flex justify-center items-center py-8">
+    <div class="bg-white rounded-lg shadow-2xl p-8">
+
+      
+      <form class="min-w-[260px]" action="{% url 'crear_agenda' %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+            Nombre
+          </label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="name" type="text" placeholder="Nombre" name="name">
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
+            Descripcion
+          </label>
+          <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="description" type="text" placeholder="Descripcion" name="description"></textarea>
+        </div>
+        <div class="flex items-center justify-between">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit" name="submit">
+            Crear Agenda
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center py-8">
+    <div class="bg-white rounded-lg shadow-2xl p-8">
+      <form class="min-w-[260px]"  method="POST">
+        
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+            Agenda
+          </label>
+          <div class="relative">
+            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="agenda" name="agenda">
+              <option value="1">Agenda</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M7 10l5 5 5-5H7z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex items-center justify-between">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit" name="submit">
+            Gestionar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+ 
+  
+  
 </body>
 </html>
