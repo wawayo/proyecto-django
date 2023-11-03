@@ -20,20 +20,21 @@
 
   <div class="grid grid-cols-2 gap-4 max-w-lg mx-auto my-8">
     <div class="bg-white rounded-lg shadow-2xl p-8 max-w-[260px]">
-      <form class="" action="#" method="POST">
+      <form class="" action="" method="POST">
+        {% csrf_token %}
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="nota-titulo">
             Nota
           </label>
           <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="name" type="text" placeholder="Titulo" name="name">
+            id="nota-titulo" type="text" placeholder="Titulo" name="titulo" required>
         </div>
         <div class="mb-6">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="nota-descripcion">
             Descripcion
           </label>
           <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="description" type="text" placeholder="Descripcion" name="description"></textarea>
+            id="nota-descripcion" type="text" placeholder="Descripcion" name="descripcion"></textarea>
         </div>
         <div class="flex items-center justify-between">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -43,21 +44,23 @@
         </div>
       </form>
     </div>
+
     <div class="bg-white rounded-lg shadow-2xl p-8 max-w-[260px]">
-      <form class="" action="index.php" method="POST">
+      <form class="" action="" method="POST">
+        {% csrf_token %}
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="tarea-titulo">
             Tarea
           </label>
           <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="name" type="text" placeholder="Titulo" name="name">
+            id="tarea-titulo" type="text" placeholder="Titulo" name="titulo" required>
         </div>
         <div class="mb-6">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="tarea-descripcion">
             Descripcion
           </label>
           <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="description" type="text" placeholder="Descripcion" name="description"></textarea>
+            id="tarea-descripcion" type="text" placeholder="Descripcion" name="descripcion"></textarea>
         </div>
         <div class="flex items-center justify-between">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
