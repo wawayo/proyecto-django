@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 
+from django.views.decorators.csrf import csrf_exempt # Desactivo el csrf porque no me deja hacer peticiones POST desde el formulario
+
 from app.models import Agenda
 # Create your views here.
 
@@ -15,6 +17,14 @@ def apuntes(request):
   render = template.render()
   return HttpResponse(render)
 
+@csrf_exempt
 def crear_agenda(request):
-  print(request.POST)
+  if request.method == 'POST':
+    nombre = request.POST['nombre']
+    descripcion = request.POST['descripcion']
+    agenda = Agenda(nombre=nombre, descripcion=descripcion)
+    agenda.save()
+    return HttpResponse('Agenda creada')
+  else:
+    return HttpResponse('No se ha podido crear la agenda')
 
