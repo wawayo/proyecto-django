@@ -28,37 +28,35 @@ class Tarea(models.Model):
     
 
 # mediantes python manage.py shell:
+'''
+from app.models import Agenda, Nota, Tarea
 
-# from app.models import Agenda, Nota, Tarea
+Agenda.objects.all().delete()
+Nota.objects.all().delete()
+Tarea.objects.all().delete()
 
-# limpia la base de datos:
-# Agenda.objects.all().delete()
-# Nota.objects.all().delete()
-# Tarea.objects.all().delete()
 
-# crea una agenda:
-# agenda1 = Agenda(nombre='Python', descripcion='Apuntes de Python')
-# agenda1.save()
-# agenda2 = Agenda(nombre='Django', descripcion='Apuntes de Django')
-# agenda2.save()
+agenda1 = Agenda(nombre='Python', descripcion='Apuntes de Python')
+agenda1.save()
+agenda2 = Agenda(nombre='Django', descripcion='Apuntes de Django')
+agenda2.save()
 
-# crea una nota:
-# nota1 = Nota(titulo='Variables', descripcion='Variables en Python', agenda=agenda1)
-# nota1.save()
-# nota2 = Nota(titulo='Funciones', descripcion='Funciones en Python', agenda=agenda1)
-# nota2.save()
-# nota3 = Nota(titulo='Variables', descripcion='Variables en Django', agenda=agenda2)
-# nota3.save()
-# nota4 = Nota(titulo='Funciones', descripcion='Funciones en Django', agenda=agenda2)
-# nota4.save()
+nota1 = Nota(titulo='Arrays', descripcion='Los principales métodos de los arrays son push, pop.', agenda=agenda1)
+nota1.save()
+nota2 = Nota(titulo='Funciones', descripcion='Las funciones son bloques de código que se pueden reutilizar.', agenda=agenda1)
+nota2.save()
+nota3 = Nota(titulo='Templates en Django', descripcion='Los templates en Django son archivos HTML que se pueden reutilizar. Se pueden definir variables con {{ variable }}.', agenda=agenda2)
+nota3.save()
+nota4 = Nota(titulo='Modelos en Django', descripcion='Los modelos en Django son clases que representan tablas de la base de datos. Se pueden definir con la clase Model.', agenda=agenda2)
+nota4.save()
 
-# crea una tarea:
-# tarea1 = Tarea(titulo='Variables', descripcion='Variables en Python', agenda=agenda1)
-# tarea1.save()
-# tarea2 = Tarea(titulo='Funciones', descripcion='Funciones en Python', agenda=agenda1)
-# tarea2.save()
-# tarea3 = Tarea(titulo='Variables', descripcion='Variables en Django', agenda=agenda2)
-# tarea3.save()
-# tarea4 = Tarea(titulo='Funciones', descripcion='Funciones en Django', agenda=agenda2)
-# tarea4.save()
+tarea1 = Tarea(titulo='Primer avance Python', descripcion='Emplear el uso correcto de variables', agenda=agenda1)
+tarea1.save()
+tarea2 = Tarea(titulo='Segundo avance Python', descripcion='Uso correcto de funciones', agenda=agenda1)
+tarea2.save()
+tarea3 = Tarea(titulo='Primer avance Django', descripcion='Emplear el uso correcto de templates', agenda=agenda2)
+tarea3.save()
+tarea4 = Tarea(titulo='Segundo avance Django', descripcion='Uso correcto de modelos', agenda=agenda2)
+tarea4.save()
 
+'''
