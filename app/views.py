@@ -12,11 +12,30 @@ def index(request):
   render = template.render({'agendas': Agenda.objects.all()})
   return HttpResponse(render)
 
+@csrf_exempt
 def apuntes(request, id):
   try:
     agenda = Agenda.objects.get(id=id)
     notas = Nota.objects.filter(agenda=agenda)
     tareas = Tarea.objects.filter(agenda=agenda)
+
+    if request.method == 'POST':
+      titulo = request.POST['titulo']
+      descripcion = request.POST['descripcion']
+      tipo = request.POST['tipo']
+
+      if tipo == 'nota':
+        nota = Nota(titulo=titulo, descripcion=descripcion, agenda=agenda)
+        nota.save()
+      else:
+        tarea = Tarea(titulo=titulo, descripcion=descripcion, agenda=agenda)
+        tarea.save()
+
+      template = loader.get_template('apuntes.html')
+      context = {'agenda': agenda, 'notas': notas, 'tareas': tareas}
+      render = template.render(context)
+      return HttpResponse(render)
+
   except Agenda.DoesNotExist:
     return redirect('index')
 
