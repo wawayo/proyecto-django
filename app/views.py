@@ -4,7 +4,7 @@ from django.template import loader
 
 from django.views.decorators.csrf import csrf_exempt # Desactivo el csrf porque no me deja hacer peticiones POST desde el formulario
 
-from app.models import Agenda
+from app.models import Agenda, Nota, Tarea
 # Create your views here.
 
 def index(request):
@@ -13,16 +13,18 @@ def index(request):
   return HttpResponse(render)
 
 def apuntes(request, id):
-  # template = loader.get_template('apuntes.html')
-  # render = template.render()
-  # return HttpResponse(render)
+  try:
+    agenda = Agenda.objects.get(id=id)
+    notas = Nota.objects.filter(agenda=agenda)
+    tareas = Tarea.objects.filter(agenda=agenda)
+  except Agenda.DoesNotExist:
+    return redirect('index')
 
-  #se carga al llamarse por path('apuntes/<int:id>/', apuntes, name='apuntes'),
-  #el id es el id de la agenda
-  agenda = Agenda.objects.get(id=id)
   template = loader.get_template('apuntes.html')
-  render = template.render({'agenda': agenda})
+  context = {'agenda': agenda, 'notas': notas, 'tareas': tareas}
+  render = template.render(context)
   return HttpResponse(render)
+
 
 
 @csrf_exempt

@@ -20,7 +20,7 @@ from app.views import index, apuntes, crear_agenda
 
 urlpatterns = [
     path('', crear_agenda, name='index'),
-    # path('crear-agenda/', crear_agenda, name='crear_agenda'),
+    path('apuntes/', crear_agenda, name='index'), # por si no se pone el id
     path('apuntes/<int:id>', apuntes, name='apuntes'),
     path('admin/', admin.site.urls),
 ]

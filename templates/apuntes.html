@@ -6,7 +6,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <title>Apuntes</title>
+  <title>Agenda</title>
 </head>
 <body>
 
@@ -75,9 +75,22 @@
         <thead>
           <tr>
             <th class="px-4 py-2">Notas</th>
-            <th class="px-4 py-2">edit</th>
+            <!-- <th class="px-4 py-2">edit</th> -->
           </tr>
         </thead>
+        <tbody>
+
+          {% for nota in notas %}
+            <tr>
+                <td class="px-4 py-2">
+                  <div class="font-bold">{{ nota.titulo }}</div>
+                  <div class="">{{nota.descripcion}}</div>
+                </td>
+                <!-- <td class="px-4 py-2">
+                    <a href="">Editar</a>
+                </td> -->
+            </tr>
+          {% endfor %}
         
         
     
@@ -89,13 +102,21 @@
         <thead>
           <tr>
             <th class="px-4 py-2">Tareas</th>
-            <th class="px-4 py-2">Descripcion</th>
+            <!-- <th class="px-4 py-2">Descripcion</th> -->
           </tr>
         </thead>
         <tbody>
-          
-          
 
+          {% for tarea in tareas %}
+            <tr>
+              <td class="px-4 py-2">
+                <div class="font-bold">{{ tarea.titulo }}</div>
+                <div class="">{{tarea.descripcion}}</div>
+              </td>
+
+            </tr>
+          {% endfor %}          
+          
         </tbody>
       </table>
     </div>
