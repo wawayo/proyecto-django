@@ -49,8 +49,8 @@
 
   <div class="flex justify-center items-center py-8">
     <div class="bg-white rounded-lg shadow-2xl p-8">
-      <form class="min-w-[260px]"  method="POST">
-        
+      <form class="min-w-[260px]" id="redireccionarForm" method="POST">
+        {% csrf_token %}
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
             Agenda
@@ -60,7 +60,7 @@
               id="agenda" name="agenda">
               <option></option>
               {% for agenda in agendas %}
-                  <option value="{{ agenda.id }}">{{ agenda.nombre }}</option>
+                <option value="{{ agenda.id }}">{{ agenda.nombre }}</option>
               {% endfor %}
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -70,14 +70,29 @@
             </div>
           </div>
         </div>
-        
+
         <div class="flex items-center justify-between">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit" name="submit">
-            Gestionar
-          </button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button" name="submit" id="gestionarButton">
+                Gestionar
+            </button>
         </div>
-      </form>
+    </form>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const gestionarButton = document.getElementById("gestionarButton");
+      gestionarButton.addEventListener("click", function() {
+        const selectedAgenda = document.getElementById("agenda").value;
+        
+        if (selectedAgenda) {
+          const redirectUrl = `/apuntes/${selectedAgenda}`;
+          window.location.href = redirectUrl;
+        }
+      });
+    });
+    </script>
+    
     </div>
   </div>
   

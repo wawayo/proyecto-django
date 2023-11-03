@@ -12,10 +12,18 @@ def index(request):
   render = template.render({'agendas': Agenda.objects.all()})
   return HttpResponse(render)
 
-def apuntes(request):
+def apuntes(request, id):
+  # template = loader.get_template('apuntes.html')
+  # render = template.render()
+  # return HttpResponse(render)
+
+  #se carga al llamarse por path('apuntes/<int:id>/', apuntes, name='apuntes'),
+  #el id es el id de la agenda
+  agenda = Agenda.objects.get(id=id)
   template = loader.get_template('apuntes.html')
-  render = template.render()
+  render = template.render({'agenda': agenda})
   return HttpResponse(render)
+
 
 @csrf_exempt
 def crear_agenda(request):
