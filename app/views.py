@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 
@@ -23,13 +23,22 @@ def crear_agenda(request):
     nombre = request.POST['nombre']
     descripcion = request.POST['descripcion']
     agenda = Agenda(nombre=nombre, descripcion=descripcion)
-    agenda.save()
+    
+    #si el nombre de la agenda ya existe, no se crea
+    if len(Agenda.objects.filter(nombre=nombre)) > 0:
+      template = loader.get_template('index.html')
+      render = template.render({'agendas': Agenda.objects.all()})
+      return HttpResponse(render)
+      
+    else:
+      agenda.save()
     
     template = loader.get_template('index.html')
     render = template.render({'agendas': Agenda.objects.all(), 'mensaje': 'Agenda creada correctamente'})
     return HttpResponse(render)
 
   else:
-    template = loader.get_template('crear_agenda.html')
-    render = template.render({'agendas': Agenda.objects.all(), 'mensaje': 'La agenda no se ha podido crear'})
+    template = loader.get_template('index.html')
+    render = template.render({'agendas': Agenda.objects.all()})
+    return HttpResponse(render)
 

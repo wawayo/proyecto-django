@@ -19,8 +19,8 @@ from django.urls import path
 from app.views import index, apuntes, crear_agenda
 
 urlpatterns = [
-    path('', index),
-    path('crear-agenda/', crear_agenda, name='crear_agenda'),
-    path('apuntes/', apuntes),
+    path('', crear_agenda, name='index'),
+    # path('crear-agenda/', crear_agenda, name='crear_agenda'),
+    path('apuntes/<int:id>/', apuntes, name='apuntes'),
     path('admin/', admin.site.urls),
 ]

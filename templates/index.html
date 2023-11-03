@@ -19,28 +19,29 @@
   
   <div class="flex justify-center items-center py-8">
     <div class="bg-white rounded-lg shadow-2xl p-8">      
-      <form class="min-w-[260px]" action="{% url 'crear_agenda' %}" method="POST">
+      <form class="min-w-[260px]" action="{% url 'index' %}" method="POST">
         {% csrf_token %}
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
             Nombre
           </label>
           <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="nombre" type="text" placeholder="Nombre" name="nombre">
+            id="nombre" type="text" placeholder="Nombre" name="nombre" required >
         </div>
         <div class="mb-6">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="descripcion">
             Descripcion
           </label>
           <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="descripcion" type="text" placeholder="Descripcion" name="descripcion"></textarea>
+            id="descripcion" type="text" placeholder="Descripcion" name="descripcion" required ></textarea>
         </div>
-        <div class="flex items-center justify-between">
+        <div class="flex items-center ">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit" name="submit">
             Crear Agenda
           </button>
         </div>
+        <p class="" >{{mensaje}}</p>
       </form>
 
     </div>
