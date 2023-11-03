@@ -9,11 +9,16 @@
   <title>Estante</title>
 </head>
 <body>
+
+  <div class="flex justify-center items-center pt-8">
+    <div class="bg-white rounded-lg">
+      <h1 class="text-3xl font-bold text-center">Crea un agenda</h1>
+    </div>
+  </div>
+
   
   <div class="flex justify-center items-center py-8">
-    <div class="bg-white rounded-lg shadow-2xl p-8">
-
-      
+    <div class="bg-white rounded-lg shadow-2xl p-8">      
       <form class="min-w-[260px]" action="{% url 'crear_agenda' %}" method="POST">
         {% csrf_token %}
         <div class="mb-4">
@@ -52,7 +57,10 @@
           <div class="relative">
             <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="agenda" name="agenda">
-              <option value="1">Agenda</option>
+              <option></option>
+              {% for agenda in agendas %}
+                  <option value="{{ agenda.id }}">{{ agenda.nombre }}</option>
+              {% endfor %}
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

@@ -9,7 +9,7 @@ from app.models import Agenda
 
 def index(request):
   template = loader.get_template('index.html')
-  render = template.render()
+  render = template.render({'agendas': Agenda.objects.all()})
   return HttpResponse(render)
 
 def apuntes(request):
@@ -24,7 +24,12 @@ def crear_agenda(request):
     descripcion = request.POST['descripcion']
     agenda = Agenda(nombre=nombre, descripcion=descripcion)
     agenda.save()
-    return HttpResponse('Agenda creada')
+    
+    template = loader.get_template('index.html')
+    render = template.render({'agendas': Agenda.objects.all(), 'mensaje': 'Agenda creada correctamente'})
+    return HttpResponse(render)
+
   else:
-    return HttpResponse('No se ha podido crear la agenda')
+    template = loader.get_template('crear_agenda.html')
+    render = template.render({'agendas': Agenda.objects.all(), 'mensaje': 'La agenda no se ha podido crear'})
 
