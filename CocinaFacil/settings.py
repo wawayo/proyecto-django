@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0+bdvnpfbs=m+c+f!=r54q*p_^ee+n%cpl!s#2y^!&258cazz3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Recetario'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'CocinaFacil.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'], # Sirve para indicarle a Django donde buscar los templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
