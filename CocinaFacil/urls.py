@@ -26,6 +26,7 @@ from Recetario.views import *
 urlpatterns = [
     path('', welcome_view, name='welcome'),
     path('recetas/', recetas_view, name='recetas'),
+    path('recetas/crear/', receta_create, name='crear-receta'),
     path('admin/', admin.site.urls),
 ] 
 #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

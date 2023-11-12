@@ -7,3 +7,6 @@ def welcome_view(request):
 
 def recetas_view(request):
     return render(request, 'Recetario/recetas.html')
+
+def receta_create(request):
+    return render(request, 'Recetario/crear-receta.html')
