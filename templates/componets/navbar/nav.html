@@ -1,4 +1,4 @@
-<div class="navbar bg-base-100">
+<div class="navbar bg-base-100 max-w-[1000px] mx-auto">
   <div class="navbar-start">
     <div class="dropdown">
       <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -15,14 +15,14 @@
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-      <li><a>Nosotros</a></li>
-      <li><a>Recetas</a></li>
+      <li><a href="/">Nosotros</a></li>
+      <li><a href="/recetas">Recetas</a></li>
     </ul>
   </div>
   <div class="navbar-end">
 
     {% if user.is_authenticated %}
-       {% include 'componets/navbar/nav-user.html' %}
+      {% include 'componets/navbar/nav-user.html' %}
     {% else %}      
     {% endif %}
 
