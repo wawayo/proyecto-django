@@ -1,0 +1,24 @@
+
+  
+{% extends "layout.html" %}
+
+  {% block title %}Bienvenido al Sitio{% endblock %}
+
+  {% block content %}
+  <div class="hero min-h-screen bg-base-200">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+      <img src="https://i.postimg.cc/ncLz2pZk/klipartz-com.png" class="max-w-[230px] sm:max-w-[350px] rounded-lg" />
+      <div>
+        <h1 class="text-5xl font-bold">Encuentra tus recetas favoritas!</h1>
+        <p class="py-6">
+          Una pagina donde podras encontrar tus recetas favoritas, y podras compartirlas con tus amigos.
+        </p>
+        <button class="btn btn-primary">A encontrar recetas!</button>
+      </div>
+    </div>
+  </div>
+
+
+  {% include 'componets/divider-welcome.html' %}
+
+{% endblock %}

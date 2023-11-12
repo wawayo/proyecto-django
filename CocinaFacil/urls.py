@@ -18,9 +18,14 @@ from django.contrib import admin
 from django.urls import path
 
 from django.conf import settings
-from django.conf.urls.static import static # Para poder servir archivos estáticos en desarrollo
+from django.conf.urls.static import static
+
+from Recetario.views import welcome_view
 
 
 urlpatterns = [
+    path('', welcome_view, name='welcome'),
     path('admin/', admin.site.urls),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Para poder servir archivos estáticos en desarrollo
+] 
+#+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+# Para poder servir archivos estáticos en desarrollo
