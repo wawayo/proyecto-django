@@ -1,7 +1,9 @@
-<div class="card w-96 bg-base-100 shadow-xl max-w-fit">
-  <div class="card-body">
-    <h2 class="card-title">Tiramisú</h2>
-    <p>L'origine del dolce italiano più conosciuto è da sempre stato un mistero, oggi si attribuisce la sua paternità alla città di Treviso.</p>
+{% for receta in recetas %}
+  <div class="card w-96 bg-base-100 shadow-xl max-w-fit">
+    <div class="card-body">
+      <h2 class="card-title">{{ receta.titulo }}</h2>
+      <p>{{ receta.descripcion }}</p>
+    </div>
+    <figure><img src="{{ receta.imagen_url }}"/></figure>
   </div>
-  <figure><img src="https://www.hogarmania.com/comunidad/archivos/202001/postres-668x400x70xX.jpg" alt="Shoes" /></figure>
-</div>
+{% endfor %}

@@ -9,7 +9,8 @@ def welcome_view(request):
     return render(request, 'Recetario/welcome.html')
 
 def recetas_view(request):
-    return render(request, 'Recetario/recetas.html')
+    recetas = Receta.objects.all()
+    return render(request, 'Recetario/recetas.html', {'recetas': recetas})
 
 def receta_detail(request, id):
     receta = Receta.objects.get(id=id)
