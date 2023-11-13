@@ -1,8 +1,9 @@
 <div class="card w-96 bg-base-100 shadow-xl max-w-fit">
   <a href="{% url 'detalle-receta' receta.id %}">
     <div class="card-body">
+      <p class="text-xs text-opacity-50 text-right">{{ receta.autor }} - {{ receta.fecha_creacion|date:"d/m/Y"  }}</p>
       <h2 class="card-title">{{ receta.titulo }}</h2>
-      <p>{{ receta.descripcion }}</p>
+      <p class="line-clamp-4">{{ receta.descripcion }}</p>
     </div>
     <figure><img src="{{ receta.imagen_url }}"/></figure>
   </a>

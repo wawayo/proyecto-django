@@ -6,7 +6,19 @@
 <div class="flex flex-col w-full border-opacity-50 mb-8 max-w-[950px] mx-auto">
   <div class="grid min-h-[50vh] card bg-base-300 rounded-box place-items-center">
     
-    <div class="max-w-[950px] my-8 p-8">
+    <div class="max-w-[950px] p-8">
+
+      <div class="flex justify-between mb-4">
+        <div class="flex items-center">
+          {% comment %} <img src="{{ receta.autor.foto.url }}" alt="foto de perfil" class="w-10 h-10 rounded-full mr-2"> {% endcomment %}
+          <p class="text-sm">
+            <spam class="">Receta por: </spam>
+            {{ receta.autor.username }}
+          </p>
+        </div>
+        <p class="text-sm">{{ receta.fecha_creacion|date:"d/m/Y" }}</p>
+      </div>
+
       <h2 class="text-xl font-bold mb-2 pb-4">{{ receta.titulo }}</h2>
       
       <div class="mb-4">
