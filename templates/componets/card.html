@@ -1,4 +1,3 @@
-{% for receta in recetas %}
 <div class="card w-96 bg-base-100 shadow-xl max-w-fit">
   <a href="{% url 'detalle-receta' receta.id %}">
     <div class="card-body">
@@ -8,4 +7,3 @@
     <figure><img src="{{ receta.imagen_url }}"/></figure>
   </a>
 </div>
-{% endfor %}
