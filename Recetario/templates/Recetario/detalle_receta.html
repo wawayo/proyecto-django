@@ -27,14 +27,27 @@
 
   </div>
   <div class="divider">Receñas:</div>
-  <div class="grid min-h-[150px] card bg-base-300 rounded-box place-items-center p-2">
+  <div class="grid gap-2 min-h-[100px] card bg-base-300 rounded-box place-items-center p-2">
 
     {% for comentario in comentarios %}
       {% include "componets/commentor.html" %}
     {% endfor %}
 
-    {% include "componets/comment.html" %}
-
+    {% if comentarios|length == 0 %}
+      <div class="text-center">
+        <p class="text-lg">No hay comentarios, sé el primero en dar una receña!</p>
+      </div>
+    {% endif %}
+    
   </div>
+
+  {%if user.is_authenticated %}
+    {% include "componets/comment.html" %}
+  {% else %}
+    <div class="pt-2 pl-2"> 
+      <a href="#" class="btn btn-primary">Inicia sesión para comentar</a>
+    </div>
+  {% endif %}    
+
 </div>
 {% endblock %}
