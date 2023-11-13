@@ -27,8 +27,14 @@
 
   </div>
   <div class="divider">Receñas:</div>
-  <div class="grid min-h-[150px] card bg-base-300 rounded-box place-items-center">
-    content
+  <div class="grid min-h-[150px] card bg-base-300 rounded-box place-items-center p-2">
+
+    {% for comentario in comentarios %}
+      {% include "componets/commentor.html" %}
+    {% endfor %}
+
+    {% include "componets/comment.html" %}
+
   </div>
 </div>
 {% endblock %}

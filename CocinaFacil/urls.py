@@ -11,7 +11,8 @@ urlpatterns = [
     path('', welcome_view, name='welcome'),
     path('recetas/', recetas_view, name='recetas'),
     path('recetas/crear/', receta_create, name='crear-receta'),
-    path('recetas/<int:id>/', receta_detail, name='detalle-receta'),
+    path('recetas/<int:id>/', detalle_receta, name='detalle-receta'),
+    path('recetas/comentar/', comentario_create, name='comentar'),
     path('admin/', admin.site.urls),
 ]  
 #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
