@@ -1,9 +1,11 @@
 {% for receta in recetas %}
-  <div class="card w-96 bg-base-100 shadow-xl max-w-fit">
+<div class="card w-96 bg-base-100 shadow-xl max-w-fit">
+  <a href="{% url 'detalle-receta' receta.id %}">
     <div class="card-body">
       <h2 class="card-title">{{ receta.titulo }}</h2>
       <p>{{ receta.descripcion }}</p>
     </div>
     <figure><img src="{{ receta.imagen_url }}"/></figure>
-  </div>
+  </a>
+</div>
 {% endfor %}
