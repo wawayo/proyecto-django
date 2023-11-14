@@ -1,6 +1,7 @@
 from django.template import loader
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from .models import *
 # Create your views here.
@@ -17,6 +18,7 @@ def detalle_receta(request, id):
     comentarios = Comentario.objects.filter(receta_id=id)
     return render(request, 'Recetario/detalle_receta.html', {'receta': receta, 'comentarios': comentarios})
 
+@login_required(login_url='/admin/')
 def receta_create(request):
     if request.method == 'POST':
         titulo = request.POST['titulo']
@@ -26,12 +28,12 @@ def receta_create(request):
         autor_id = request.POST['autor_id']
         receta = Receta(titulo=titulo, ingredientes=ingredientes, descripcion=descripcion, instrucciones=instrucciones, autor_id=autor_id)
         receta.save()
-        #imprimir por consola el objeto
-        print(request.POST)
+
         return redirect('recetas')
     else:
         return render(request, 'Recetario/crear_receta.html')
-    
+
+@login_required(login_url='/admin/')   
 def comentario_create(request):
     if request.method == 'POST':
         autor_id = request.POST['autor_id']
