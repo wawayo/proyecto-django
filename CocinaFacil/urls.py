@@ -10,6 +10,7 @@ from Recetario.views import *
 urlpatterns = [
     path('', welcome_view, name='welcome'),
     path('recetas/', recetas_view, name='recetas'),
+    path('perfil/', perfil_view, name='perfil'),
     path('recetas/crear/', receta_create, name='crear-receta'),
     path('recetas/<int:id>/', detalle_receta, name='detalle-receta'),
     path('recetas/comentar/', comentario_create, name='comentar'),

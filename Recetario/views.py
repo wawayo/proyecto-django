@@ -13,6 +13,10 @@ def recetas_view(request):
     recetas = Receta.objects.all()
     return render(request, 'Recetario/recetas.html', {'recetas': recetas})
 
+def perfil_view(request):
+    recetas = Receta.objects.filter(autor_id=request.user.id)
+    return render(request, 'Recetario/perfil.html', {'recetas': recetas})
+
 def detalle_receta(request, id):
     try:
         receta = Receta.objects.get(id=id)
