@@ -12,7 +12,7 @@
           {% if user.is_authenticated %}
             <li><a href="{% url 'crear-receta' %}">Crear Receta</a></li>
           {% else %}    
-            <li><a href="#">Iniciar sesión</a></li>
+            <li><a href="/admin/">Iniciar sesión</a></li>
             <li><a href="#">Registrarse</a></li>  
           {% endif %}
 
@@ -28,7 +28,7 @@
         {% if user.is_authenticated %}
           <li><a href="{% url 'crear-receta' %}">Crear Receta</a></li>
         {% else %}    
-          <li><a href="#">Iniciar sesión</a></li>
+          <li><a href="/admin/">Iniciar sesión</a></li>
           <li><a href="#">Registrarse</a></li>  
         {% endif %}
 
