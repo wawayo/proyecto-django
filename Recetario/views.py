@@ -25,6 +25,35 @@ def detalle_receta(request, id):
     except Receta.DoesNotExist:
         return render(request, 'Recetario/recetas.html', {'mensaje': 'La receta no existe'})
 
+@login_required(login_url='/admin/')  
+def receta_edit(request, id):
+    if request.user.id != Receta.objects.get(id=id).autor_id:
+        return render(request, 'Recetario/recetas.html', {'mensaje': 'No puedes editar esta receta'})
+    try:
+        receta = Receta.objects.get(id=id)
+        if request.method == 'POST':
+            receta.titulo = request.POST['titulo']
+            receta.ingredientes = request.POST['ingredientes']
+            receta.descripcion = request.POST['descripcion']
+            receta.instrucciones = request.POST['instrucciones']
+            receta.save()
+            return redirect('detalle-receta', id=id)
+        else:
+            return render(request, 'Recetario/editar_receta.html', {'receta': receta})
+    except Receta.DoesNotExist:
+        return render(request, 'Recetario/recetas.html', {'mensaje': 'La receta no existe'})
+
+@login_required(login_url='/admin/')
+def receta_delete (request, id):
+    if request.user.id != Receta.objects.get(id=id).autor_id:
+        return render(request, 'Recetario/recetas.html', {'mensaje': 'No puedes eliminar esta receta'})
+    try:
+        receta = Receta.objects.get(id=id)
+        receta.delete()
+        return redirect('perfil')
+    except Receta.DoesNotExist:
+        return render(request, 'Recetario/recetas.html', {'mensaje': 'La receta no existe'})
+
 @login_required(login_url='/admin/')
 def receta_create(request):
     if request.method == 'POST':
@@ -36,7 +65,7 @@ def receta_create(request):
         receta = Receta(titulo=titulo, ingredientes=ingredientes, descripcion=descripcion, instrucciones=instrucciones, autor_id=autor_id)
         receta.save()
 
-        return redirect('recetas')
+        return redirect('perfil')
     else:
         return render(request, 'Recetario/crear_receta.html')
 
