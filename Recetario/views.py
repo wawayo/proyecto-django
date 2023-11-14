@@ -46,7 +46,15 @@ def comentario_create(request):
 def buscar_receta(request):
     if request.method == 'POST':
         titulo = request.POST['titulo']
-        recetas = Receta.objects.filter(titulo__contains=titulo)
+        nombre = Receta.objects.filter(titulo__contains=titulo)
+        ingredientes = Receta.objects.filter(ingredientes__contains=titulo)
+        descripcion = Receta.objects.filter(descripcion__contains=titulo)
+        recetas = nombre.union(ingredientes, descripcion)
+
+        if recetas.count() == 0:
+            return render(request, 'Recetario/recetas.html', {'recetas': recetas, 'mensaje': 'No se encontraron resultados'})
+        
         return render(request, 'Recetario/recetas.html', {'recetas': recetas})
+
     else:
         return redirect('recetas')
