@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path
 
 from django.conf import settings
@@ -18,6 +19,7 @@ urlpatterns = [
     path('recetas/comentar/', comentario_create, name='comentar'),
     path('recetas/buscar/', buscar_receta, name='buscar-receta'),
     path('admin/', admin.site.urls),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]  
 #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 # Para poder servir archivos estáticos en desarrollo
