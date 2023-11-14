@@ -14,17 +14,19 @@
             <h1 class="text-3xl font-bold text-gray-700">Recetas</h1>
         </div>
 
-        <div class="mx-auto text-center"> <!-- Added text-center class for centering -->
-            <div class="form-control inline-block"> <!-- Changed to inline-block for better centering -->
-                <input type="text" placeholder="Search" class="input input-bordered w-[60vw] max-w-[950px]" />
-            </div>
+        <div class="mx-auto text-center">
+            <form class="form-control inline-block" action="{% url 'buscar-receta' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="titulo" placeholder="Buscar receta" class="input input-bordered w-[60vw] max-w-[950px]" />
+                <button class="btn btn-primary">Buscar</button>
+            </form>
         </div>
     </div>
 </div>
 
 
 
-  <div class="mx-auto max-w-[1200px] mb-8 min-h-[50vh]">
+  <div class="mx-auto max-w-[1200px] mb-8 min-h-[70vh]">
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center ">
 

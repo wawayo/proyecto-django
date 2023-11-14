@@ -42,3 +42,11 @@ def comentario_create(request):
         return redirect('detalle-receta', id=receta_id)
     else:
         return redirect('recetas')
+    
+def buscar_receta(request):
+    if request.method == 'POST':
+        titulo = request.POST['titulo']
+        recetas = Receta.objects.filter(titulo__contains=titulo)
+        return render(request, 'Recetario/recetas.html', {'recetas': recetas})
+    else:
+        return redirect('recetas')
