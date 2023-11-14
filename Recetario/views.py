@@ -14,9 +14,12 @@ def recetas_view(request):
     return render(request, 'Recetario/recetas.html', {'recetas': recetas})
 
 def detalle_receta(request, id):
-    receta = Receta.objects.get(id=id)
-    comentarios = Comentario.objects.filter(receta_id=id)
-    return render(request, 'Recetario/detalle_receta.html', {'receta': receta, 'comentarios': comentarios})
+    try:
+        receta = Receta.objects.get(id=id)
+        comentarios = Comentario.objects.filter(receta_id=id)
+        return render(request, 'Recetario/detalle_receta.html', {'receta': receta, 'comentarios': comentarios})
+    except Receta.DoesNotExist:
+        return render(request, 'Recetario/recetas.html', {'mensaje': 'La receta no existe'})
 
 @login_required(login_url='/admin/')
 def receta_create(request):
