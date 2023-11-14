@@ -28,14 +28,14 @@
 
   <div class="mx-auto max-w-[1200px] mb-8 min-h-[70vh]">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center ">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center max-w-fit mx-auto">
 
       {{mensaje}}
 
       {% for receta in recetas %}
         {% include 'componets/card.html'%}
       {% endfor %}
-      
+
     </div>
     
   </div>
