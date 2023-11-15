@@ -57,7 +57,7 @@
     {% include "componets/comment.html" %}
   {% else %}
     <div class="pt-2 pl-2"> 
-      <a href="/admin/" class="btn btn-primary">Inicia sesión para comentar</a>
+      <a href="{% url 'login' %}" class="btn btn-primary">Inicia sesión para comentar</a>
     </div>
   {% endif %}    
 

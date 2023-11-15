@@ -12,8 +12,8 @@
           {% if user.is_authenticated %}
             <li><a href="{% url 'crear-receta' %}">Crear Receta</a></li>
           {% else %}    
-            <li><a href="/admin/">Iniciar sesión</a></li>
-            <li><a href="#">Registrarse</a></li>  
+            <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+            <li><a href="{% url 'register' %}">Registrarse</a></li>  
           {% endif %}
 
         </ul>
@@ -28,8 +28,8 @@
         {% if user.is_authenticated %}
           <li><a href="{% url 'crear-receta' %}">Crear Receta</a></li>
         {% else %}    
-          <li><a href="/admin/">Iniciar sesión</a></li>
-          <li><a href="#">Registrarse</a></li>  
+          <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+          <li><a href="{% url 'register' %}">Registrarse</a></li>  
         {% endif %}
 
       </ul>
