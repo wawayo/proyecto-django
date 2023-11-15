@@ -62,7 +62,8 @@ def receta_create(request):
         descripcion = request.POST['descripcion']
         instrucciones = request.POST['instrucciones']
         autor_id = request.POST['autor_id']
-        receta = Receta(titulo=titulo, ingredientes=ingredientes, descripcion=descripcion, instrucciones=instrucciones, autor_id=autor_id)
+        imagen = request.FILES.get('imagen')
+        receta = Receta(titulo=titulo, ingredientes=ingredientes, descripcion=descripcion, instrucciones=instrucciones, autor_id=autor_id, imagen=imagen)
         receta.save()
 
         return redirect('perfil')

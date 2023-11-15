@@ -24,6 +24,5 @@ urlpatterns = [
 
     path('login/', login_view, name='login'),
     path('register/', register_view, name='register'),
-]  
-#+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # Para poder servir archivos estáticos en desarrollo

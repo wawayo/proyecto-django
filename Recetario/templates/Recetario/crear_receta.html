@@ -12,7 +12,7 @@
 </div>
 
 
-<form class="max-w-[700px] mx-auto my-16 p-2" action="{% url 'crear-receta' %}" method="POST" >
+<form class="max-w-[700px] mx-auto my-16 p-2" action="{% url 'crear-receta' %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
 
   <input type="hidden" name="autor_id" value="{{ request.user.id }}">
@@ -41,7 +41,7 @@
     <div>
       <label for="imagen" class="block text-sm font-medium leading-6 text-gray-900">Imagen</label>
       <input type="file" id="imagen" name="imagen" class="sr-only">
-      <label for="imagen" class="cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+      <label  for="imagen" class="cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
         <span>Cargar Foto</span>
       </label>
     </div>
