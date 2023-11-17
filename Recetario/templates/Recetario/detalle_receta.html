@@ -7,35 +7,27 @@
   <div class="grid min-h-[50vh] card bg-base-300 rounded-box">
     
     <div class="max-w-full p-4 sm:p-8">
-
-      <div class="mb-4 flex flex-col sm:flex-row sm:justify-between">
-        <div class="mb-2 sm:mb-0 flex items-center">
-          <p class="text-sm">
-            <span class="font-bold">Receta por:</span> {{ receta.autor.username }}
-          </p>
-        </div>
+      <div class="mb-4 flex justify-between items-center">
+        <p class="text-sm font-bold">Receta por: {{ receta.autor.username }}</p>
         <p class="text-sm">{{ receta.fecha_creacion|date:"d/m/Y" }}</p>
       </div>
     
-      <h2 class="text-xl font-bold mb-2 pb-4">{{ receta.titulo }}</h2>
+      <h2 class="text-xl font-bold mb-4">{{ receta.titulo }}</h2>
     
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold mb-2">Descripción:</h3>
+          <p>{{ receta.descripcion }}</p>
+        </div>
     
-        <div>
-          <div class="mb-4">
-            <h3 class="text-lg font-semibold mb-2">Descripción:</h3>
-            <p>{{ receta.descripcion }}</p>
-          </div>
-    
-          <div class="mb-4">
-            <h3 class="text-lg font-semibold mb-2">Ingredientes:</h3>
-            <p>{{ receta.ingredientes }}</p>
-          </div>
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold mb-2">Ingredientes:</h3>
+          <p>{{ receta.ingredientes }}</p>
         </div>
     
         {% if receta.imagen %}
-          <div class="mb-4 max-w-sm mx-auto">
-            <img src="{{ receta.imagen.url }}" alt="imagen de la receta" class="max-w-full rounded-lg mx-auto">
+          <div class="mb-6 sm:col-span-2 flex justify-center items-center max-h-[300px] max-w-[600px]">
+            <img src="{{ receta.imagen.url }}" alt="imagen de la receta" class="w-full h-auto max-h-[300px] object-cover rounded-lg">
           </div>
         {% endif %}
       </div>
@@ -45,6 +37,8 @@
         <p>{{ receta.instrucciones }}</p>
       </div>
     </div>
+    
+    
     
 
   </div>
