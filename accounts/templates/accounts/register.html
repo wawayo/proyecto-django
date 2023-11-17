@@ -17,6 +17,7 @@
   <div class="min-h-[75vh]">
     <form action="{% url 'register' %}" method="post" class="shadow-lg p-4 max-w-[380px] mx-auto ">
       {% csrf_token %}
+      
         <div>
           {{ form.as_table }}
         </div>
@@ -34,7 +35,7 @@
             td {
               background-color: #ffffff;
             }
-            input[type=text], input[type=password] {
+            input[type=text], input[type=password], input[type=email] {
               width: 100%;
               padding: 12px 20px;
               margin: 8px 0;
@@ -68,7 +69,6 @@
               padding-top: 16px;
             }
         </style>
-
 
       <button type="submit">Regístrate</button>
     </form>

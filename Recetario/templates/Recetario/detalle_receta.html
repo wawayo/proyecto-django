@@ -6,52 +6,56 @@
 <div class="flex flex-col w-full border-opacity-50 mb-8 max-w-[950px] mx-auto mt-4">
   <div class="grid min-h-[50vh] card bg-base-300 rounded-box">
     
-    <div class="max-w-[950px] p-8">
+    <div class="max-w-full p-4 sm:p-8">
 
-      <div class="flex justify-between mb-4">
-        <div class="flex items-center">
-          {% comment %} <img src="{{ receta.autor.foto.url }}" alt="foto de perfil" class="w-10 h-10 rounded-full mr-2"> {% endcomment %}
+      <div class="mb-4 flex flex-col sm:flex-row sm:justify-between">
+        <div class="mb-2 sm:mb-0 flex items-center">
           <p class="text-sm">
-            <spam class="">Receta por: </spam>
-            {{ receta.autor.username }}
+            <span class="font-bold">Receta por:</span> {{ receta.autor.username }}
           </p>
         </div>
         <p class="text-sm">{{ receta.fecha_creacion|date:"d/m/Y" }}</p>
       </div>
-
+    
       <h2 class="text-xl font-bold mb-2 pb-4">{{ receta.titulo }}</h2>
-      
-      <div class="mb-4">
-        <h3 class="text-lg font-semibold mb-2">Descripción:</h3>
-        <p>{{ receta.descripcion }}</p>
-      </div>
-
-      {% if receta.imagen %}
-        <div class="mb-4">
-          <img src="{{ receta.imagen.url }}" alt="imagen de la receta" class="max-w-md rounded-lg">
+    
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    
+        <div>
+          <div class="mb-4">
+            <h3 class="text-lg font-semibold mb-2">Descripción:</h3>
+            <p>{{ receta.descripcion }}</p>
+          </div>
+    
+          <div class="mb-4">
+            <h3 class="text-lg font-semibold mb-2">Ingredientes:</h3>
+            <p>{{ receta.ingredientes }}</p>
+          </div>
         </div>
-      {% endif %}
-      
-      <div class="mb-4">
-        <h3 class="text-lg font-semibold mb-2">Ingredientes:</h3>
-        <p>{{ receta.ingredientes }}</p>
+    
+        {% if receta.imagen %}
+          <div class="mb-4 max-w-sm mx-auto">
+            <img src="{{ receta.imagen.url }}" alt="imagen de la receta" class="max-w-full rounded-lg mx-auto">
+          </div>
+        {% endif %}
       </div>
-      
+    
       <div>
         <h3 class="text-lg font-semibold mb-2">Instrucciones:</h3>
         <p>{{ receta.instrucciones }}</p>
       </div>
     </div>
+    
 
   </div>
 
   {% if user.is_authenticated and user == receta.autor %}
     <div class="flex gap-2 justify-center mt-4">
-      <a href="{% url 'editar-receta' receta.id %}" class="btn btn-primary">Editar</a>
       <form action="{% url 'eliminar-receta' receta.id %}" method="POST">
         {% csrf_token %}
         <button type="submit" class="btn btn-secondary">Eliminar</button>
       </form>
+      <a href="{% url 'editar-receta' receta.id %}" class="btn btn-primary">Editar</a>
     </div>
   {% endif %}
 
