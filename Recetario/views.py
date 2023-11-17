@@ -25,6 +25,22 @@ def detalle_receta(request, id):
     except Receta.DoesNotExist:
         return render(request, 'Recetario/recetas.html', {'mensaje': 'La receta no existe'})
 
+@login_required(login_url='/accounts/login/')
+def receta_create(request):
+    if request.method == 'POST':
+        titulo = request.POST['titulo']
+        ingredientes = request.POST['ingredientes']
+        descripcion = request.POST['descripcion']
+        instrucciones = request.POST['instrucciones']
+        autor_id = request.POST['autor_id']
+        imagen = request.FILES.get('imagen')
+        receta = Receta(titulo=titulo, ingredientes=ingredientes, descripcion=descripcion, instrucciones=instrucciones, autor_id=autor_id, imagen=imagen)
+        receta.save()
+
+        return redirect('perfil')
+    else:
+        return render(request, 'Recetario/crear_receta.html')
+
 @login_required(login_url='/accounts/login/')  
 def receta_edit(request, id):
     if request.user.id != Receta.objects.get(id=id).autor_id:
@@ -36,6 +52,11 @@ def receta_edit(request, id):
             receta.ingredientes = request.POST['ingredientes']
             receta.descripcion = request.POST['descripcion']
             receta.instrucciones = request.POST['instrucciones']
+
+            nueva_imagen = request.FILES.get('imagen')
+            if nueva_imagen:
+                receta.imagen = nueva_imagen
+                
             receta.save()
             return redirect('detalle-receta', id=id)
         else:
@@ -53,22 +74,6 @@ def receta_delete (request, id):
         return redirect('perfil')
     except Receta.DoesNotExist:
         return render(request, 'Recetario/recetas.html', {'mensaje': 'La receta no existe'})
-
-@login_required(login_url='/accounts/login/')
-def receta_create(request):
-    if request.method == 'POST':
-        titulo = request.POST['titulo']
-        ingredientes = request.POST['ingredientes']
-        descripcion = request.POST['descripcion']
-        instrucciones = request.POST['instrucciones']
-        autor_id = request.POST['autor_id']
-        imagen = request.FILES.get('imagen')
-        receta = Receta(titulo=titulo, ingredientes=ingredientes, descripcion=descripcion, instrucciones=instrucciones, autor_id=autor_id, imagen=imagen)
-        receta.save()
-
-        return redirect('perfil')
-    else:
-        return render(request, 'Recetario/crear_receta.html')
 
 @login_required(login_url='/accounts/login/')   
 def comentario_create(request):
