@@ -8,7 +8,7 @@
     
     <div class="max-w-full p-4 sm:p-8">
       <div class="mb-4 flex justify-between items-center">
-        <p class="text-sm font-bold">Receta por: {{ receta.autor.username }}</p>
+        <p class="text-sm font-bold">Receta de: {{ receta.autor.username }}</p>
         <p class="text-sm">{{ receta.fecha_creacion|date:"d/m/Y" }}</p>
       </div>
     
@@ -26,7 +26,7 @@
         </div>
     
         {% if receta.imagen %}
-          <div class="mb-6 sm:col-span-2 flex justify-center items-center max-h-[300px] max-w-[600px]">
+          <div class="mb-6 sm:col-span-2 flex justify-center items-center">
             <img src="{{ receta.imagen.url }}" alt="imagen de la receta" class="w-full h-auto max-h-[300px] object-cover rounded-lg">
           </div>
         {% endif %}

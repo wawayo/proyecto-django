@@ -18,6 +18,7 @@ urlpatterns = [
     path('recetas/crear/', receta_create, name='crear-receta'),
     path('recetas/<int:id>/', detalle_receta, name='detalle-receta'),
     path('recetas/comentar/', comentario_create, name='comentar'),
+    path('recetas/comentario/eliminar/<int:id>/', comentario_delete, name='eliminar-comentario'),
     path('recetas/buscar/', buscar_receta, name='buscar-receta'),
     path('admin/', admin.site.urls),
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),

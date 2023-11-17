@@ -10,7 +10,7 @@ def welcome_view(request):
     return render(request, 'Recetario/welcome.html')
 
 def recetas_view(request):
-    recetas = Receta.objects.all()
+    recetas = Receta.objects.order_by('-fecha_creacion')
     return render(request, 'Recetario/recetas.html', {'recetas': recetas})
 
 def perfil_view(request):
@@ -56,7 +56,7 @@ def receta_edit(request, id):
             nueva_imagen = request.FILES.get('imagen')
             if nueva_imagen:
                 receta.imagen = nueva_imagen
-                
+
             receta.save()
             return redirect('detalle-receta', id=id)
         else:
@@ -87,6 +87,20 @@ def comentario_create(request):
     else:
         return redirect('recetas')
     
+@login_required(login_url='/accounts/login/')
+def comentario_delete(request, id):
+    try:
+        comentario = Comentario.objects.get(id=id)
+        receta_id = comentario.receta_id
+
+        if request.user.id == comentario.autor_id or request.user.id == Receta.objects.get(id=receta_id).autor_id:
+            comentario.delete()
+            return redirect('detalle-receta', id=receta_id)
+        else:
+            return render(request, 'Recetario/recetas.html', {'mensaje': 'No puedes eliminar este comentario'})
+    except Comentario.DoesNotExist:
+        return redirect('detalle-receta', id=receta_id)
+   
 def buscar_receta(request):
     if request.method == 'POST':
         titulo = request.POST['titulo']
