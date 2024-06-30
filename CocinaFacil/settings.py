@@ -79,7 +79,7 @@ import os
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', 'b9d62twxnsfvebuspdra-postgresql.services.clever-cloud.com')
+        default=os.getenv('DATABASE_URL',)
     )
 }
 ALLOWED_HOSTS = ['*']
