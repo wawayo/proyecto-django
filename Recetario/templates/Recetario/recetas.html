@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Recetas{% endblock %}
+{% block title %}Posts{% endblock %}
 
 {% block content %}
 
@@ -11,13 +11,13 @@
     <div class="mx-auto max-w-[1200px]">
 
         <div class="flex justify-center items-center pb-4">
-            <h1 class="text-3xl font-bold text-gray-700">Recetas</h1>
+            <h1 class="text-3xl font-bold text-gray-700">Posts</h1>
         </div>
 
         <div class="mx-auto text-center">
             <form class="form-control inline-block" action="{% url 'buscar-receta' %}" method="POST">
                 {% csrf_token %}
-                <input type="text" name="titulo" placeholder="Buscar receta" class="input input-bordered w-[60vw] max-w-[950px]" />
+                <input type="text" name="titulo" placeholder="Buscar Posts" class="input input-bordered w-[60vw] max-w-[950px]" />
                 <button class="btn btn-primary">Buscar</button>
             </form>
         </div>

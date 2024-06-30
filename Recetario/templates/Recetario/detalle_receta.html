@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}La Receta{% endblock %}
+{% block title %}El Post{% endblock %}
 
 {% block content %}
 <div class="flex flex-col w-full border-opacity-50 mb-8 max-w-[950px] mx-auto mt-4">
@@ -8,7 +8,7 @@
     
     <div class="max-w-full p-4 sm:p-8">
       <div class="mb-4 flex justify-between items-center">
-        <p class="text-sm font-bold">Receta de: {{ receta.autor.username }}</p>
+        <p class="text-sm font-bold">Post de: {{ receta.autor.username }}</p>
         <p class="text-sm">{{ receta.fecha_creacion|date:"d/m/Y" }}</p>
       </div>
     
@@ -21,7 +21,7 @@
         </div>
     
         <div class="mb-6">
-          <h3 class="text-lg font-semibold mb-2">Ingredientes:</h3>
+          <h3 class="text-lg font-semibold mb-2">Requerimientos:</h3>
           <p>{{ receta.ingredientes }}</p>
         </div>
     

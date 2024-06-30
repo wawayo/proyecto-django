@@ -10,19 +10,19 @@ def welcome_view(request):
     return render(request, 'Recetario/welcome.html')
 
 def recetas_view(request):
-    recetas = Receta.objects.order_by('-fecha_creacion')
+    recetas = Post.objects.order_by('-fecha_creacion')
     return render(request, 'Recetario/recetas.html', {'recetas': recetas})
 
 def perfil_view(request):
-    recetas = Receta.objects.filter(autor_id=request.user.id)
+    recetas = Post.objects.filter(autor_id=request.user.id)
     return render(request, 'Recetario/perfil.html', {'recetas': recetas})
 
 def detalle_receta(request, id):
     try:
-        receta = Receta.objects.get(id=id)
+        receta = Post.objects.get(id=id)
         comentarios = Comentario.objects.filter(receta_id=id)
         return render(request, 'Recetario/detalle_receta.html', {'receta': receta, 'comentarios': comentarios})
-    except Receta.DoesNotExist:
+    except Post.DoesNotExist:
         return render(request, 'Recetario/recetas.html', {'mensaje': 'La receta no existe'})
 
 @login_required(login_url='/accounts/login/')
@@ -34,7 +34,7 @@ def receta_create(request):
         instrucciones = request.POST['instrucciones']
         autor_id = request.POST['autor_id']
         imagen = request.FILES.get('imagen')
-        receta = Receta(titulo=titulo, ingredientes=ingredientes, descripcion=descripcion, instrucciones=instrucciones, autor_id=autor_id, imagen=imagen)
+        receta = Post(titulo=titulo, ingredientes=ingredientes, descripcion=descripcion, instrucciones=instrucciones, autor_id=autor_id, imagen=imagen)
         receta.save()
 
         return redirect('perfil')
@@ -43,10 +43,10 @@ def receta_create(request):
 
 @login_required(login_url='/accounts/login/')  
 def receta_edit(request, id):
-    if request.user.id != Receta.objects.get(id=id).autor_id:
+    if request.user.id != Post.objects.get(id=id).autor_id:
         return render(request, 'Recetario/recetas.html', {'mensaje': 'No puedes editar esta receta'})
     try:
-        receta = Receta.objects.get(id=id)
+        receta = Post.objects.get(id=id)
         if request.method == 'POST':
             receta.titulo = request.POST['titulo']
             receta.ingredientes = request.POST['ingredientes']
@@ -61,18 +61,18 @@ def receta_edit(request, id):
             return redirect('detalle-receta', id=id)
         else:
             return render(request, 'Recetario/editar_receta.html', {'receta': receta})
-    except Receta.DoesNotExist:
+    except Post.DoesNotExist:
         return render(request, 'Recetario/recetas.html', {'mensaje': 'La receta no existe'})
 
 @login_required(login_url='/accounts/login/')
 def receta_delete (request, id):
-    if request.user.id != Receta.objects.get(id=id).autor_id:
+    if request.user.id != Post.objects.get(id=id).autor_id:
         return render(request, 'Recetario/recetas.html', {'mensaje': 'No puedes eliminar esta receta'})
     try:
-        receta = Receta.objects.get(id=id)
+        receta = Post.objects.get(id=id)
         receta.delete()
         return redirect('perfil')
-    except Receta.DoesNotExist:
+    except Post.DoesNotExist:
         return render(request, 'Recetario/recetas.html', {'mensaje': 'La receta no existe'})
 
 @login_required(login_url='/accounts/login/')   
@@ -93,7 +93,7 @@ def comentario_delete(request, id):
         comentario = Comentario.objects.get(id=id)
         receta_id = comentario.receta_id
 
-        if request.user.id == comentario.autor_id or request.user.id == Receta.objects.get(id=receta_id).autor_id:
+        if request.user.id == comentario.autor_id or request.user.id == Post.objects.get(id=receta_id).autor_id:
             comentario.delete()
             return redirect('detalle-receta', id=receta_id)
         else:
@@ -104,9 +104,9 @@ def comentario_delete(request, id):
 def buscar_receta(request):
     if request.method == 'POST':
         titulo = request.POST['titulo']
-        nombre = Receta.objects.filter(titulo__contains=titulo)
-        ingredientes = Receta.objects.filter(ingredientes__contains=titulo)
-        descripcion = Receta.objects.filter(descripcion__contains=titulo)
+        nombre = Post.objects.filter(titulo__contains=titulo)
+        ingredientes = Post.objects.filter(ingredientes__contains=titulo)
+        descripcion = Post.objects.filter(descripcion__contains=titulo)
         recetas = nombre.union(ingredientes, descripcion)
 
         if recetas.count() == 0:

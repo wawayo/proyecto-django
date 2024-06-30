@@ -4,8 +4,8 @@ from django.contrib import admin
 
 # Todos lo usuarion podrán en sus propias recetas editar, eliminar y crear recetas.
 
-from .models import Receta, Comentario, Favorito
+from .models import Post, Comentario, Favorito
 
-admin.site.register(Receta)
+admin.site.register(Post)
 admin.site.register(Comentario)
 admin.site.register(Favorito)

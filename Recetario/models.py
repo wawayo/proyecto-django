@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Receta(models.Model):
+class Post(models.Model):
     titulo = models.CharField(max_length=255)
     ingredientes = models.TextField()
     descripcion = models.TextField()
@@ -16,7 +16,7 @@ class Receta(models.Model):
 
 
 class Comentario(models.Model):
-    receta = models.ForeignKey(Receta, on_delete=models.CASCADE, related_name='comentarios')
+    receta = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comentarios')
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     texto = models.TextField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
@@ -27,7 +27,7 @@ class Comentario(models.Model):
 
 class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    receta = models.ForeignKey(Receta, on_delete=models.CASCADE)
+    receta = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.usuario.username} ha marcado como favorita la receta {self.receta.titulo}'
