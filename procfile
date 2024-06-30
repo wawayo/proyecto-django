@@ -1,2 +1,2 @@
-web: gunicorn proyecto-django.wsgi --log-file -
+web: gunicorn CocinaFacil.wsgi --log-file -
 
