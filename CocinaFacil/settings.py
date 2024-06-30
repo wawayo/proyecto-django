@@ -79,7 +79,7 @@ import os
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', 'postgres://user:password@localhost:5432/mydatabase')
+        default=os.getenv('DATABASE_URL', 'postgresql://postgres:mSVHIeHEsHKRIIDHqeGZaRxbxtNGBiPT@monorail.proxy.rlwy.net:29361/railway')
     )
 }
 ALLOWED_HOSTS = ['*']
