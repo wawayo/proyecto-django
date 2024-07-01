@@ -72,15 +72,13 @@ WSGI_APPLICATION = 'CocinaFacil.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+import dj_database_url
+from decouple import config
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',     # Reemplaza con el nombre de tu base de datos
-        'USER': 'postgres',         # Reemplaza con el usuario proporcionado por Railway
-        'PASSWORD': 'ChiXcBStpijvUIbtByjxZWrsDerWQnnt', # Reemplaza con la contraseña proporcionada por Railway
-        'HOST': 'roundhouse.proxy.rlwy.net',         # Reemplaza con el host proporcionado por Railway
-        'PORT': '59754',         # Reemplaza con el puerto proporcionado por Railway
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 
